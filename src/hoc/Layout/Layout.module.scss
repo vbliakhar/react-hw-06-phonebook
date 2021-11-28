@@ -1,0 +1,18 @@
+.container {
+  background: #f6f8fa;
+  margin: 0 auto;
+  width: 900px;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+main {
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  h1 {
+    text-align: center;
+  }
+}

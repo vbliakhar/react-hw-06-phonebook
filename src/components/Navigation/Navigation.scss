@@ -1,0 +1,31 @@
+nav {
+  background: red;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  position: fixed;
+}
+.link {
+  display: inline-block;
+  text-decoration: none;
+  width: 100%;
+  padding: 12px;
+  font-weight: 500;
+  font-size: 18px;
+  color: black;
+  text-align: center;
+}
+.layerNav {
+  width: 900px;
+  display: flex;
+}
+.link:hover {
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.active {
+  composes: link;
+  background: red;
+  color: white;
+}
