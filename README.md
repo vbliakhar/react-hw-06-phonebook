@@ -7,3 +7,5 @@ What's new I learned
 -Redux
 -Redux Toolkit
 -shortid is a module for a unique key...
+-env-settings
+![preview](./images-readme/env-styles.png)

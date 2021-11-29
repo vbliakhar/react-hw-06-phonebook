@@ -1,5 +1,6 @@
+@import "shared.scss";
 nav {
-  background: red;
+  background: $red;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
