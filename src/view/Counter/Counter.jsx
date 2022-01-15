@@ -1,22 +1,33 @@
-import React from "react";
 import style from "./Counter.module.scss";
 import { useState } from "react";
-const Counter = () => {
-  const [count, setCount] = useState(0);
+import { connect } from "react-redux";
+import * as actions from "../../redux/actions";
 
+const Counter = ({ value, onIncrement, onDecrement }) => {
   return (
     <>
       <h1>Counter</h1>
       <h2 style={{ textAlign: "center" }}>counter of my component</h2>
+      <h1>{value}</h1>
       <div className={style.component}>
-        <h1>{count}</h1>
         <div className={style.blockButton}>
-          <button onClick={() => setCount(count - 1)}>decrement</button>
-          <button onClick={() => setCount(count + 1)}>increment</button>
+          <button onClick={onIncrement}>increment</button>
+          <button onClick={onDecrement}>decrement</button>
         </div>
       </div>
     </>
   );
 };
+const mapStateToProps = (state) => {
+  return {
+    value: state.counterValue,
+  };
+};
 
-export default Counter;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onIncrement: () => dispatch(actions.increment(5)),
+    onDecrement: () => dispatch(actions.decrement(5)),
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Counter);
