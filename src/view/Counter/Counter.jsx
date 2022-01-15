@@ -1,5 +1,4 @@
 import style from "./Counter.module.scss";
-import { useState } from "react";
 import { connect } from "react-redux";
 import * as actions from "../../redux/actions";
 
