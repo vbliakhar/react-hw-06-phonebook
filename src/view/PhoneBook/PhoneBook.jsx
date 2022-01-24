@@ -24,11 +24,11 @@ const PhoneBook = () => {
     { id: "id-4", name: "Annie Copeland", number: "227-91-26" },
   ]);
 
-  const deleteContact = (contactId) => {
-    setContacts((prevState) =>
-      prevState.filter((contact) => contact.id !== contactId)
-    );
-  };
+  // const deleteContact = (contactId) => {
+  //   setContacts((prevState) =>
+  //     prevState.filter((contact) => contact.id !== contactId)
+  //   );
+  // };
   const formSubmitHandler = ({ name, number }) => {
     const sameName = contacts.find(
       (contact) => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase()
@@ -36,6 +36,7 @@ const PhoneBook = () => {
     if (sameName) {
       alert(`${contacts.name} is already in contacts.`);
     } else {
+      console.log("this is my reducer");
       const addContacts = {
         id: shortid.generate(),
         name: name,
@@ -58,10 +59,10 @@ const PhoneBook = () => {
   return (
     <div>
       <h1>PhoneBook</h1>
-      <ContactForm onSubmit={formSubmitHandler} />
+      <ContactForm />
       <h2>Contacts</h2>
-      <Filter value={filter} onChange={changeFilter} />
-      <ContactList contacts={filterContacts} onDeleteContact={deleteContact} />
+      {/* <Filter value={filter} onChange={changeFilter} /> */}
+      <ContactList contacts={filterContacts} />
     </div>
   );
 };

@@ -1,19 +1,45 @@
 import React from "react";
 import PropTypes from "prop-types";
 import "./ContactList.scss";
-const ContactList = ({ contacts, onDeleteContact }) => {
+import { connect } from "react-redux";
+import { deleteContact } from "../../redux/phoneBook/phoneBook-actions";
+const ContactList = ({ value, contacts, onDeleteContact }) => {
   return (
-    <ul className="ContactList">
-      {contacts.map(({ id, name, number }) => {
-        return (
-          <li key={id}>
-            {name}:<span> {number}</span>
-            <button onClick={() => onDeleteContact(id)}>delete</button>
-          </li>
-        );
-      })}
-    </ul>
+    <>
+      {" "}
+      <ul className="ContactList">
+        {contacts.map(({ id, name, number }) => {
+          return (
+            <li key={id}>
+              {name}:<span> {number}</span>
+              <button onClick={() => onDeleteContact(id)}>delete</button>
+            </li>
+          );
+        })}
+      </ul>
+      <ul className="ContactList">
+        {value.map(({ id, name, number }) => {
+          return (
+            <li key={id}>
+              {name}:<span> {number}</span>
+              <button onClick={() => onDeleteContact(id)}>delete</button>
+            </li>
+          );
+        })}
+      </ul>
+    </>
   );
+};
+
+const mapStateToProps = (state) => {
+  return {
+    value: state.contacts.items.contacts,
+  };
+};
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onDeleteContact: (id) => dispatch(deleteContact(id)),
+  };
 };
 ContactList.propTypes = {
   contacts: PropTypes.arrayOf(
@@ -24,4 +50,4 @@ ContactList.propTypes = {
     })
   ),
 };
-export default ContactList;
+export default connect(mapStateToProps, mapDispatchToProps)(ContactList);
