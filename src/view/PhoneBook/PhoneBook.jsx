@@ -46,23 +46,23 @@ const PhoneBook = () => {
     }
   };
 
-  const changeFilter = (e) => {
-    setFilter(e.target.value);
-  };
-  const getFilterContacts = () => {
-    const normalizedFilter = filter.toLowerCase();
-    return contacts.filter((contact) =>
-      contact.name.toLowerCase().includes(normalizedFilter)
-    );
-  };
-  const filterContacts = getFilterContacts();
+  // const changeFilter = (e) => {
+  //   setFilter(e.target.value);
+  // };
+  // const getFilterContacts = () => {
+  //   const normalizedFilter = filter.toLowerCase();
+  //   return contacts.filter((contact) =>
+  //     contact.name.toLowerCase().includes(normalizedFilter)
+  //   );
+  // };
+  // const filterContacts = getFilterContacts();
   return (
     <div>
       <h1>PhoneBook</h1>
       <ContactForm />
       <h2>Contacts</h2>
-      {/* <Filter value={filter} onChange={changeFilter} /> */}
-      <ContactList contacts={filterContacts} />
+      <Filter value={filter} onChange={"changeFilter"} />
+      <ContactList />
     </div>
   );
 };

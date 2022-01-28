@@ -1,11 +1,12 @@
 import { combineReducers } from "redux";
 import { INCREMENT, DECREMENT } from "./counter-types";
+import test from "./counter-types";
 const valueReducer = (state = 500, action) => {
   switch (action.type) {
     case INCREMENT:
       return state + action.payload;
 
-    case DECREMENT:
+    case test.DECREMENT:
       return state - action.payload;
     default:
       return state;
