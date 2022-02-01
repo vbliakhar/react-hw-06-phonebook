@@ -6,7 +6,6 @@ import { addContacts } from "../../redux/phoneBook/phoneBook-actions";
 const ContactForm = (props) => {
   const [name, setName] = useState("");
   const [number, setNumber] = useState("");
-
   const handleChange = (event) => {
     const { name, value } = event.currentTarget;
     switch (name) {
@@ -20,10 +19,20 @@ const ContactForm = (props) => {
         return;
     }
   };
+
+  const contactCheck = props.contacts.find(
+    (contact) => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase()
+  );
   const handleSubmit = (e) => {
     e.preventDefault();
-    props.onSubmit({ name, number });
-    resetState();
+
+    if (contactCheck) {
+      alert(`${props.contacts.name} is already in contacts.`);
+      resetState();
+    } else {
+      props.onSubmit({ name, number });
+      resetState();
+    }
   };
   const resetState = () => {
     setName("");
@@ -60,6 +69,9 @@ const ContactForm = (props) => {
     </form>
   );
 };
+const mapStateToProps = (state) => ({
+  contacts: state.contacts.items.contacts,
+});
 const mapDispatchToProps = (dispatch) => {
   return {
     onSubmit: ({ name, number }) => dispatch(addContacts({ name, number })),
@@ -68,4 +80,4 @@ const mapDispatchToProps = (dispatch) => {
 ContactForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
-export default connect(null, mapDispatchToProps)(ContactForm);
+export default connect(mapStateToProps, mapDispatchToProps)(ContactForm);
